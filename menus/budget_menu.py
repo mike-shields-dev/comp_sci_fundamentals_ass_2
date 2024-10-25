@@ -1,12 +1,13 @@
-from Finances.Finances import Finances, INCOME, EXPENSES
+from Ledger import Ledger
+from constants import INCOME, EXPENSES
 
-finances = Finances()
+ledger = Ledger()
 
 def budget_menu():
-    income = finances.get_income()
-    expenses = finances.get_expenses_total()
-    essential_expenses = finances.get_essential_expenses_total()
-    non_essential_expenses = finances.get_non_essential_expenses_total()
+    income = ledger.get_income()
+    expenses = ledger.get_expenses_total()
+    essential_expenses = ledger.get_essential_expenses_total()
+    non_essential_expenses = ledger.get_non_essential_expenses_total()
 
     print(f"{INCOME}, £{income:.2f}")
     print(f"{EXPENSES}, £{expenses:.2f}")

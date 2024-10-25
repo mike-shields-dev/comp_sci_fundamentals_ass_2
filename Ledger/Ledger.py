@@ -4,16 +4,16 @@ from constants import INCOME, EXPENSES, ESSENTIAL, NON_ESSENTIAL
 from utilities.is_non_empty_str.is_non_empty_str import is_non_empty_str
 from utilities.is_positive_number.is_positive_number import is_positive_number
 
-class Finances:
+class Ledger:
     """ 
-    A class to manage a financial ledger, storing income and categorized expenses.
+    A class to manage a financial ledger, storing income and categorised expenses.
 
     Attributes:
-        __state (dict): A dictionary containing income and categorized expenses.
+        __state (dict): A dictionary containing income and categorised expenses.
     """
     def __init__(self):
         """
-        Initializes a new Finances instance with an income of 0.0 
+        Initialises a new ledgers instance with an income of 0.0 
         and categorized expense lists for essential and non-essential expenses.
         """
         self.__state = {
@@ -26,10 +26,10 @@ class Finances:
 
     def get_state(self) -> dict:
         """
-        Retrieves a copy of the finances' internal state.
+        Retrieves a copy of the ledgers' internal state.
 
         Returns: 
-            dict: A copy of the finances' internal state.
+            dict: A copy of the ledgers' internal state.
         """
         return self.__state.copy()
 
@@ -56,7 +56,7 @@ class Finances:
             self.__state[INCOME] = amount
         else:
             raise ValueError(
-                "Error: Cannot set the finances' income. The provided income must be a positive number greater than 0.0."
+                "Error: Cannot set the ledgers' income. The provided income must be a positive number greater than 0.0."
             )
 
     def get_expense_categories(self) -> List[str]:
@@ -70,7 +70,7 @@ class Finances:
         
     def append_expense(self, expense: Expense) -> None:
         """
-        Adds an expense to the specified category within the finances.
+        Adds an expense to the specified category within the ledgers expenses.
 
         Args: 
             expense (Expense): An instance of the Expense class.
@@ -139,7 +139,7 @@ class Finances:
                 
     def is_valid_expense_category(self, category: str) -> bool:
         """
-        Checks if a given category exists in the finances' expenses.
+        Checks if a given category exists in the ledgers' expenses.
 
         Args:
             category (str): The category to validate.
