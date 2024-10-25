@@ -9,7 +9,7 @@ from constants import (
 )
 
 class TestFinancesState(unittest.TestCase):
-    """Test suite for Finances class's state management methods."""    
+    """Unit tests for Finances class's state management methods."""    
     def setUp(self):
         """Sets up a Finances instance for each test."""
         self.finances = Finances()
@@ -27,7 +27,7 @@ class TestFinancesState(unittest.TestCase):
 
   
 class TestFinancesIncome(unittest.TestCase):
-    """Test suite for methods related to the income attribute in Finances."""    
+    """Unit tests for methods related to the income attribute in Finances."""    
     def setUp(self):
         """Sets up a Finances instance for each test."""
         self.finances = Finances()
@@ -66,7 +66,7 @@ class TestFinancesIncome(unittest.TestCase):
 
 
 class TestFinancesExpenses(unittest.TestCase):
-    """Test suite for methods related to expenses in Finances."""    
+    """Unit tests for methods related to expenses in Finances."""    
     def setUp(self):
         """Sets up a Finances instance for each test."""
         self.finances = Finances()
@@ -108,7 +108,7 @@ class TestFinancesExpenses(unittest.TestCase):
             self.finances.append_expense(None)
 
 def test_get_sum_expenses_by_categories_raises(self):
-        """Tests that `Finances.get_sum_expenses_by_categories` raises: 
+        """Unit tests for the `Finances.get_sum_expenses_by_categories` raises: 
             
             - ValueError: If no categories are provided. 
             - ValueError: If any category is invalid.
@@ -131,8 +131,10 @@ if __name__ == '__main__':
     cov = coverage.Coverage()
     cov.start()
 
+    # Run unit tests
     unittest.main()
 
     # Stop coverage
     cov.stop()
+    # Save coverage stats
     cov.save()

@@ -1,7 +1,8 @@
-import coverage, unittest
+import coverage
+import unittest
 from Expense import Expense
 
-class TestExpenseCategory(unittest.TestCase):
+class TestExpense(unittest.TestCase):
     """
     Unit tests for the Expense class's methods related to 
     getting and setting expense attributes such as amount and category.
@@ -66,13 +67,16 @@ class TestExpenseCategory(unittest.TestCase):
         self.expense.set_category("Test Category")
         self.assertEqual(self.expense.get_category(), "Test Category")
 
+
 if __name__ == '__main__':
+    # Start coverage
     cov = coverage.Coverage()
     cov.start()
 
+    # Run unit tests
     unittest.main()
 
+    # Stop coverage
     cov.stop()
+    # Save coverage stats
     cov.save()
-    cov.html_report()
-    print("Done.")
