@@ -107,24 +107,24 @@ class TestFinancesExpenses(unittest.TestCase):
             "Error: Cannot add expense, it must be of type 'Expense'."):
             self.finances.append_expense(None)
 
-def test_get_sum_expenses_by_categories_raises(self):
-        """Unit tests for the `Finances.get_sum_expenses_by_categories` raises: 
+    def test_get_sum_expenses_by_categories_raises(self):
+            """Unit tests for the `Finances.get_sum_expenses_by_categories` raises: 
+                
+                - ValueError: If no categories are provided. 
+                - ValueError: If any category is invalid.
+                - TypeError: If any category is not a string.
+            """
+            with self.assertRaisesRegex(ValueError, 
+                "Error: At least one category must be provided."):
+                self.finances.get_sum_expenses_by_categories()
             
-            - ValueError: If no categories are provided. 
-            - ValueError: If any category is invalid.
-            - TypeError: If any category is not a string.
-        """
-        with self.assertRaisesRegex(ValueError, 
-            "Error: At least one category must be provided."):
-            self.finances.get_sum_expenses_by_categories()
-        
-        with self.assertRaisesRegex(TypeError, 
-            "Error: The provided categories must be non-empty strings."):
-            self.finances.get_sum_expenses_by_categories(1, 2)
+            with self.assertRaisesRegex(TypeError, 
+                "Error: The provided categories must be non-empty strings."):
+                self.finances.get_sum_expenses_by_categories(1, 2)
 
-        with self.assertRaisesRegex(ValueError, 
-            "Error: No expenses for the provided category: \"Unknown Category\" were found."):
-            self.finances.get_sum_expenses_by_categories("Unknown Category")
+            with self.assertRaisesRegex(ValueError, 
+                "Error: No expenses for the provided category: \"Unknown Category\" were found."):
+                self.finances.get_sum_expenses_by_categories("Unknown Category")
 
 if __name__ == '__main__':
     # Start coverage
