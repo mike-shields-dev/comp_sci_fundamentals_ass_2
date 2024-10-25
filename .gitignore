@@ -1,0 +1,43 @@
+# Byte-compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Python environment
+env/
+venv/
+ENV/
+.venv/
+env.bak/
+venv.bak/
+
+# Coverage reports
+htmlcov/
+.coverage
+*.cover
+
+# IDE and editor files
+*.swp
+*.swo
+*.DS_Store
+*.idea/
+.vscode/
+
+# Test cache
+.pytest_cache/
+nosetests.xml
+coverage.xml
+*.cover
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Log files
+*.log
+
+# Miscellaneous
+*.pot
+*.egg-info/
+dist/
+build/
