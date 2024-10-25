@@ -1,7 +1,7 @@
 from simple_term_menu import TerminalMenu
 
 # Import the Finances (singleton) instance.
-from finances import finances
+from ledger import ledger
 from Expense.Expense import Expense
 
 def expenses_menu():

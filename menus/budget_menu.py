@@ -1,7 +1,8 @@
-from Ledger import Ledger
+# Import the Finances (singleton) instance.
+from ledger import ledger
+
 from constants import INCOME, EXPENSES
 
-ledger = Ledger()
 
 def budget_menu():
     income = ledger.get_income()

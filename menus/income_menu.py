@@ -1,13 +1,14 @@
-from finances import finances
+# Import the Finances (singleton) instance.
+from ledger import ledger
 
 def income_menu():
-    while finances.get_income() == 0.0:
+    while ledger.get_income() == 0.0:
         try:
             PROMPT = "Please enter your income: "
-            finances.set_income(float(input(PROMPT)))
+            ledger.set_income(float(input(PROMPT)))
         
         except ValueError as e:
             print(str(e))        
         
-    if finances.get_income() == 0.0:
+    if ledger.get_income() == 0.0:
         return income_menu
