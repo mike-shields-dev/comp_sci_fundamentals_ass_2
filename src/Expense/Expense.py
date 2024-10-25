@@ -1,5 +1,5 @@
-from utilities.is_positive_number.is_positive_number import is_positive_number
-from utilities.is_non_empty_str.is_non_empty_str import is_non_empty_str
+from utilities.is_positive_number import is_positive_number
+from utilities.is_non_empty_string import is_non_empty_string
 
 from constants import AMOUNT, CATEGORY, TITLE
 
@@ -58,17 +58,17 @@ class Expense:
                 "Error: The expense's amount can only be set to a number greater than 0.0"
             )
 
-        self.__state[AMOUNT] = amount
+        self.__state[AMOUNT] = float(amount)
 
     
-    def get_amount(self) -> float:
+    def get_amount(self) -> float | None:
         """
         Retrieves the amount of the expense.
 
         Returns: 
             float: The amount of the expense.
         """
-        return float(self.__state[AMOUNT])
+        return self.__state[AMOUNT]
 
 
     def set_category(self, category: str) -> None:
@@ -81,7 +81,7 @@ class Expense:
         Raises:
             ValueError: If `category` is not a non-empty string.
         """
-        if not is_non_empty_str(category):
+        if not is_non_empty_string(category):
             raise ValueError(
                 "Error: The expense's category must be a non-empty string."
             )
@@ -89,7 +89,7 @@ class Expense:
         self.__state[CATEGORY] = category
         
 
-    def get_category(self) -> str:
+    def get_category(self) -> str | None:
         """
         Retrieves the category of the expense.
 
@@ -109,7 +109,7 @@ class Expense:
         Raises: 
             ValueError: If `title` is not a non-empty string.
         """
-        if not is_non_empty_str(title):
+        if not is_non_empty_string(title):
             raise ValueError(
                 "Error: The expense's title must be a non-empty string."
             )    
@@ -117,7 +117,7 @@ class Expense:
         self.__state[TITLE] = title
     
 
-    def get_title(self) -> str:
+    def get_title(self) -> str | None:
         """
         Retrieves the title of the expense.
 

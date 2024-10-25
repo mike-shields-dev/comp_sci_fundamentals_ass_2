@@ -1,4 +1,4 @@
-def is_non_empty_str(value: str) -> bool:
+def is_non_empty_string(value: str) -> bool:
     """
     Returns:
         bool: 

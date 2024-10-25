@@ -6,7 +6,7 @@ in the event that the category names need to be changed.
 
 # MAIN MENU OPTION NAMES
 INCOME_MENU = "Enter Income"
-EXPENSE_MENU = "Enter Expenses"
+EXPENSE_MENU = "Add Expense"
 BUDGET_MENU = "Display Budget"
 EXIT_MENU = "Exit Program"
 

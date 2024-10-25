@@ -38,15 +38,15 @@ class TestLedgerIncome(unittest.TestCase):
         if the income is not a valid positive number.
         """
         with self.assertRaisesRegex(ValueError, 
-            "Error: Cannot set the ledgers' income. The provided income must be a positive number greater than 0.0."):
+            "Error: The expense amount must be a number greater than 0.0."):
             self.ledger.set_income("£1000.00")
 
         with self.assertRaisesRegex(ValueError, 
-            "Error: Cannot set the ledgers' income. The provided income must be a positive number greater than 0.0."):
+            "Error: The expense amount must be a number greater than 0.0."):
             self.ledger.set_income(0)
 
         with self.assertRaisesRegex(ValueError, 
-            "Error: Cannot set the ledgers' income. The provided income must be a positive number greater than 0.0."):
+            "Error: The expense amount must be a number greater than 0.0."):
             self.ledger.set_income(-10)
 
     def test_set_income(self):

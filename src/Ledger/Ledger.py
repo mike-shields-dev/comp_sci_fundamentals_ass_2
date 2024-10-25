@@ -1,8 +1,8 @@
 from typing import List
 from Expense.Expense import Expense
 from constants import INCOME, EXPENSES, ESSENTIAL, NON_ESSENTIAL
-from utilities.is_non_empty_str.is_non_empty_str import is_non_empty_str
-from utilities.is_positive_number.is_positive_number import is_positive_number
+from utilities.is_non_empty_string import is_non_empty_string
+from utilities.is_positive_number import is_positive_number
 
 class Ledger:
     """ 
@@ -56,7 +56,7 @@ class Ledger:
             self.__state[INCOME] = amount
         else:
             raise ValueError(
-                "Error: Cannot set the ledgers' income. The provided income must be a positive number greater than 0.0."
+                "Error: The expense amount must be a number greater than 0.0."
             )
 
     def get_expense_categories(self) -> List[str]:
@@ -85,22 +85,22 @@ class Ledger:
                 "Error: Cannot add expense, it must be of type 'Expense'."
             )
         
-        if not is_positive_number(expense.amount):
+        if not is_positive_number(expense.get_amount()):
             raise ValueError(
-                "Error: The expense amount must be a positive number greater than 0.0."
+                "Error: Cannot add expense, the expense amount must be a number greater than 0.0."
             )
         
-        if not self.is_valid_expense_category(expense.category):
+        if not self.is_valid_expense_category(expense.get_category()):
             raise ValueError(
                 f"Error: The expense category must be one of: {self.get_expense_categories()}."
             )
         
-        if not is_non_empty_str(expense.title):
+        if not is_non_empty_string(expense.get_title()):
             raise ValueError(
                 "Error: The expense title must be a non-empty string."
             )
         
-        self.__state[EXPENSES][expense.category].append(expense)
+        self.__state[EXPENSES][expense.get_category()].append(expense)
 
     def get_sum_expenses_by_categories(self, *categories: str) -> float:
         """
@@ -122,6 +122,7 @@ class Ledger:
             )
 
         total = 0.0
+        
         for category in categories:
             if not isinstance(category, str):
                 raise TypeError(
@@ -133,7 +134,7 @@ class Ledger:
                     f"Error: No expenses for the provided category: \"{category}\" were found."
                 )
             
-            total += sum(exp.amount for exp in self.__state[EXPENSES][category])
+            total += sum(exp.get_amount() for exp in self.__state[EXPENSES][category])
 
         return total
                 

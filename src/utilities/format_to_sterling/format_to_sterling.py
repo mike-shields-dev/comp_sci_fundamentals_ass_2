@@ -1,4 +1,4 @@
-def format_sterling(value):
+def format_to_sterling(value) -> str:
     """
     Formats a numeric value as a denomination in 
     pounds sterling.
@@ -11,7 +11,7 @@ def format_sterling(value):
 
     Returns: 
         str: The provided numeric value with
-            - Prefix: £ symbol
+            - Prefix: "£" symbol
             - Suffix: The value padded to 2 decimal places
     """
 
