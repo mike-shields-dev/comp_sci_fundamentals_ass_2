@@ -1,4 +1,4 @@
-from Finances.Finances import finances
+from finances import finances
 
 def income_menu():
     while finances.get_income() == 0.0:

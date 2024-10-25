@@ -1,6 +1,7 @@
-from lib.is_positive_number import is_positive_number
 from simple_term_menu import TerminalMenu
-from Finances.Finances import finances
+
+# Import the Finances (singleton) instance.
+from finances import finances
 from Expense.Expense import Expense
 
 def expenses_menu():

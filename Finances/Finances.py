@@ -4,7 +4,6 @@ from constants import INCOME, EXPENSES, ESSENTIAL, NON_ESSENTIAL
 from utilities.is_non_empty_str.is_non_empty_str import is_non_empty_str
 from utilities.is_positive_number.is_positive_number import is_positive_number
 
-
 class Finances:
     """ 
     A class to manage a financial ledger, storing income and categorized expenses.
