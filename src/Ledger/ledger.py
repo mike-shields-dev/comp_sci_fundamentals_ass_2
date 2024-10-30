@@ -1,4 +1,4 @@
-from Ledger import Ledger
+from src.Ledger import Ledger
 
 """
 Instantiate a "singleton" instance of the Finances class

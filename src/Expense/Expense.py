@@ -1,7 +1,7 @@
-from utilities.is_positive_number import is_positive_number
-from utilities.is_non_empty_string import is_non_empty_string
+from src.utilities.is_positive_number import is_positive_number
+from src.utilities.is_non_empty_string import is_non_empty_string
 
-from constants import AMOUNT, CATEGORY, TITLE
+from src.constants import AMOUNT, CATEGORY, TITLE
 
 class Expense:
     """
@@ -51,7 +51,7 @@ class Expense:
             amount (float | int): The expense's amount.
 
         Raises: 
-            ValueError: If `amount` is not a positive number.
+            ValueError: If the provided `amount` is not a positive number.
         """
         if not is_positive_number(amount):
             raise ValueError(

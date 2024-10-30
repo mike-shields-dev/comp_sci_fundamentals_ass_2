@@ -1,8 +1,8 @@
 from typing import List
-from Expense.Expense import Expense
-from constants import INCOME, EXPENSES, ESSENTIAL, NON_ESSENTIAL
-from utilities.is_non_empty_string import is_non_empty_string
-from utilities.is_positive_number import is_positive_number
+from src.Expense.Expense import Expense
+from src.constants import INCOME, EXPENSES, ESSENTIAL, NON_ESSENTIAL, TITLE
+from src.utilities.is_non_empty_string import is_non_empty_string
+from src.utilities.is_positive_number import is_positive_number
 
 class Ledger:
     """ 
@@ -56,7 +56,7 @@ class Ledger:
             self.__state[INCOME] = amount
         else:
             raise ValueError(
-                "Error: The expense amount must be a number greater than 0.0."
+                "Error: income must be a number greater than 0.0."
             )
 
     def get_expense_categories(self) -> List[str]:
@@ -68,6 +68,7 @@ class Ledger:
         """
         return list(self.__state[EXPENSES].keys())
         
+
     def append_expense(self, expense: Expense) -> None:
         """
         Adds an expense to the specified category within the ledgers expenses.
@@ -87,56 +88,55 @@ class Ledger:
         
         if not is_positive_number(expense.get_amount()):
             raise ValueError(
-                "Error: Cannot add expense, the expense amount must be a number greater than 0.0."
+                "Error: Cannot add expense, its amount must be a number greater than 0.0."
             )
         
         if not self.is_valid_expense_category(expense.get_category()):
             raise ValueError(
-                f"Error: The expense category must be one of: {self.get_expense_categories()}."
+                "Error: Cannot add expense, its category is not a valid expense category"
             )
         
         if not is_non_empty_string(expense.get_title()):
             raise ValueError(
-                "Error: The expense title must be a non-empty string."
+                "Error: Cannot add expense, its title is not a valid expense category"
             )
         
         self.__state[EXPENSES][expense.get_category()].append(expense)
 
-    def get_sum_expenses_by_categories(self, *categories: str) -> float:
+    def get_all_expenses(self) -> List[Expense]:
         """
-        Calculates the sum of expenses for the specified categories.
+        Returns a list of all of the expenses in all expense categories.
+        """
+        all_expenses = []
+        for category in self.__state[EXPENSES].values():
+            all_expenses.extend(category)
+        
+        return all_expenses
+    
+    def get_expenses_by_category(self, *categories: str) -> List[str]:
+        """
+        Returns a list of the expenses stored in the ledger's expenses 
+        dictionary under the properties that match the provided
+        category.
 
         Args:
-            categories (str): One or more category names to sum expenses for.
-        
-        Raises:
-            TypeError: If any category is not a string.
-            ValueError: If any category is invalid or none are provided.
+            categories (str): One or more expense categories.
         
         Returns: 
-            float: The total sum of expenses for the specified categories.
-        """
-        if len(categories) == 0:
-            raise ValueError(
-                "Error: At least one category must be provided."
-            )
-
-        total = 0.0
+            list: 
+                A list of any expenses found in the ledger's expenses 
+                dictionary under the properties that match the provided 
+                categories.
+        """ 
+        expenses = []
         
-        for category in categories:
-            if not isinstance(category, str):
-                raise TypeError(
-                    "Error: The provided categories must be non-empty strings."
-                )
+        # set function is used to remove possible duplicate categories          
+        for expense_category in self.get_expense_categories():  
+            if expense_category in categories:
+                # Assuming get_expenses_by_category is a method that returns expenses by category
+                expenses.extend(self.__state[EXPENSES][expense_category])  
 
-            if category not in self.get_expense_categories():
-                raise ValueError(
-                    f"Error: No expenses for the provided category: \"{category}\" were found."
-                )
-            
-            total += sum(exp.get_amount() for exp in self.__state[EXPENSES][category])
-
-        return total
+        return expenses
                 
     def is_valid_expense_category(self, category: str) -> bool:
         """
@@ -149,3 +149,17 @@ class Ledger:
             bool: True if the category is valid, False otherwise.
         """
         return category in self.__state[EXPENSES]
+    
+
+    def is_unique_expense_title(self, title) -> bool:
+        """
+        Checks that the provided expense title has
+        not already been allocated to an expense 
+        in all the expense category lists.
+        """
+        
+        for expense in self.get_all_expenses():
+            if expense.get_title() == title:
+                return False
+        
+        return True

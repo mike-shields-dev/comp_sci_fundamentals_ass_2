@@ -2,26 +2,8 @@
 
 ## Running Tests
 
-- To run all tests:
+To run all tests and generate a html coverage report run:
 
 ```bash
-coverage run -m unittest discover -s . -p '*_test.py'
-```
-
-- To run all tests (verbose):
-
-```bash
-coverage run -m unittest discover -s . -p '*_test.py' -v
-```
-
-- To run individual tests:
-
-```bash
-coverage run -m unittest <path/to/file_test.py>
-```
-
-- To run individual tests (verbose):
-
-```bash
-coverage run -m unittest <path/to/file_test.py> -v
+coverage run -m unittest discover -s tests -p '*_test.py' -v && coverage html
 ```
